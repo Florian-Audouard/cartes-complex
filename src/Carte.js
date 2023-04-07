@@ -116,7 +116,7 @@ function Carte() {
 			i++;
 		}
 
-		console.log(matToString(mat));
+		return mat;
 	};
 
 	const multipleMatrixBy3 = (mat) => {
@@ -261,38 +261,30 @@ function Carte() {
 			0
 		);
 		const resultat = tmp[0];
-		// insertLink(multipleMatrixBy3(resultat));
 		return matToString(resultat);
 	};
 
-	function recurciveRender(card, num) {
+	function recurciveRender(card, num, insideCard) {
 		if (card.color !== null) {
 			return [
 				<span
 					className="card_simple"
 					style={{ backgroundColor: card.color, gridArea: "a" + num }}
-				></span>,
+				>
+					{insideCard}
+				</span>,
 				num + 1,
 			];
 		}
-		let classLinkDynamique = "link" + num;
-		let tmp = recurciveRender(card.left, num);
+		let tmp = recurciveRender(card.left, num, null);
 		let carte1 = tmp[0];
 		num = tmp[1];
-		classLinkDynamique += num;
-		//${classLinkDynamique}
-		let link = (
-			<span
-				className={`link`}
-				style={{ gridColumn: "1 / 3", gridRow: 1 }}
-			>
-				{card.link}
-			</span>
-		);
-		tmp = recurciveRender(card.right, num);
+
+		let link = <span className={`link`}>{card.link}</span>;
+		tmp = recurciveRender(card.right, num, link);
 		let carte2 = tmp[0];
 		num = tmp[1];
-		return [[carte1, link, carte2], num];
+		return [[carte1, carte2], num];
 	}
 	function RenderCard(props) {
 		const currentCard = props.currentCard;
