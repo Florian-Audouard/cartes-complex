@@ -1,0 +1,24 @@
+.card_simple {
+    background-color: black;
+    border: 0.4vh solid #800000;
+    border-radius: 2vh;
+    
+}
+.carte_container{
+    width: 500px;
+    height: 200px;
+    display: inline-grid;
+    grid-gap: 10px;
+}
+
+.link{
+    border-radius: 5px;
+    background-color: rgba(160, 160, 160, 0.9);
+    border: 2px solid rgb(160, 160, 160);
+    font-size: 2vh;
+    height: 40px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
